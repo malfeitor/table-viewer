@@ -1,0 +1,31 @@
+{
+  "name": "@malfeitor/table-viewer",
+  "version": "1.0.0",
+  "description": "A React component who display data as a table.",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "jest",
+    "prepublish": "tsc",
+    "sass": "sass --update --style=compressed src/:dist/"
+  },
+  "author": "Malfeitor",
+  "license": "GPL-3.0",
+  "exports": {
+    "types": "./dist/index.d.ts",
+    "import": "./dist/index.js"
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "dist/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/malfeitor/table-viewer.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/malfeitor/table-viewer/issues"
+  },
+  "homepage": "https://github.com/malfeitor/table-viewer#readme"
+}
