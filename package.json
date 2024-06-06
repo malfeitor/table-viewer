@@ -27,5 +27,27 @@
   "bugs": {
     "url": "https://github.com/malfeitor/table-viewer/issues"
   },
-  "homepage": "https://github.com/malfeitor/table-viewer#readme"
+  "homepage": "https://github.com/malfeitor/table-viewer#readme",
+  "dependencies": {
+    "bootstrap": "^5.3.3",
+    "npm": "^10.8.1",
+    "react": "^18.3.1",
+    "react-bootstrap": "^2.10.2",
+    "react-dom": "^18.3.1",
+    "react-icons": "^5.2.1"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.24.7",
+    "@babel/preset-typescript": "^7.24.7",
+    "@jest/globals": "^29.7.0",
+    "@testing-library/dom": "^10.1.0",
+    "@testing-library/jest-dom": "^6.4.5",
+    "@types/jest": "^29.5.12",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "sass": "^1.77.4",
+    "typescript": "^5.4.5"
+  }
 }
