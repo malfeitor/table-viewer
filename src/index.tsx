@@ -1,22 +1,16 @@
 import React from 'react'
 import './index.scss'
-
-type TableViewerProps = {
-  rows: {
-    [key: string | number]: string | number
-  }[]
-  className?: string
-}
+import { TableViewerProps, isObjectRowType } from './utils/types'
 
 export const TableViewer = ({ rows, className = '' }: TableViewerProps) => {
-  let headRow: string[] = []
+  let headRow: Array<string> = []
   let tableRows = []
-  // check if rows data is an Object
-  if (rows[0].length === undefined) {
+  if (isObjectRowType(rows)) {
     // get all uniques column identifiers
     headRow = [...new Set(rows.map((row) => Object.keys(row)).flat())]
     tableRows = rows.map((row) => headRow.map((column) => row[column]))
   } else {
+    // create a copy
     tableRows = JSON.parse(JSON.stringify(rows))
     headRow = tableRows.shift()
   }
