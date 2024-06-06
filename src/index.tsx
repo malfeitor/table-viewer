@@ -2,12 +2,10 @@ import React from 'react'
 import './index.scss'
 
 type TableViewerProps = {
-  rows: [
-    {
-      [key: string]: string | number
-    }
-  ]
-  className: string
+  rows: {
+    [key: string | number]: string | number
+  }[]
+  className?: string
 }
 
 export const TableViewer = ({ rows, className = '' }: TableViewerProps) => {
