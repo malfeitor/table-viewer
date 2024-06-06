@@ -10,14 +10,15 @@ type TableViewerProps = {
 }
 
 export const TableViewer = ({ rows }: TableViewerProps) => {
-  let headRow = []
+  let headRow: string[] = []
   let tableRows = []
   // check if rows data is an Object
   if (rows[0].length === undefined) {
-    headRow = Object.keys(rows[0])
-    tableRows = rows.map((row) => Object.values(row))
+    // get all uniques column identifiers
+    headRow = [...new Set(rows.map((row) => Object.keys(row)).flat())]
+    tableRows = rows.map((row) => headRow.map((column) => row[column]))
   } else {
-    tableRows = JSON.parse(JSON.stringify(rows[0]))
+    tableRows = JSON.parse(JSON.stringify(rows))
     headRow = tableRows.shift()
   }
 
