@@ -7,9 +7,10 @@ type TableViewerProps = {
       [key: string]: string | number
     }
   ]
+  className: string
 }
 
-export const TableViewer = ({ rows }: TableViewerProps) => {
+export const TableViewer = ({ rows, className = '' }: TableViewerProps) => {
   let headRow: string[] = []
   let tableRows = []
   // check if rows data is an Object
@@ -23,7 +24,7 @@ export const TableViewer = ({ rows }: TableViewerProps) => {
   }
 
   return (
-    <table>
+    <table className={className}>
       <thead>
         <tr>
           {headRow.map((column: string | number, index: number) => (
