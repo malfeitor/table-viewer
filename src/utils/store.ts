@@ -29,6 +29,7 @@ export const useTableStore = create<TableStoreType>((set) => ({
         displayedRows: state.tableRows.filter(
           (_, index) => index < number * state.currentPage
         ),
+        currentPage: 1,
       }
     }),
   setPage: (number: number) =>
