@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import './index.scss'
 import { TableViewerProps, isObjectRowType } from './utils/types'
-import { Button } from 'react-bootstrap'
 import { TableStoreType, useTableStore } from './utils/store'
 import TableContent from './components/Table'
 import Quantity from './components/Quantity'
