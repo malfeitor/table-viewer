@@ -5,6 +5,7 @@ import { Button } from 'react-bootstrap'
 import { TableStoreType, useTableStore } from './utils/store'
 import TableContent from './components/Table'
 import Quantity from './components/Quantity'
+import ShowCounter from './components/ShowCounter'
 
 export const TableViewer = ({ rows }: TableViewerProps) => {
   const setHeadRow = useTableStore((state: TableStoreType) => state.setHeadRow)
@@ -42,7 +43,7 @@ export const TableViewer = ({ rows }: TableViewerProps) => {
       </div>
       <TableContent />
       <div className="tableViewer__footer d-flex justify-content-between">
-        <p>Showing 1 of 2 entries</p>
+        <ShowCounter />
         <div>
           <Button>Previous</Button>
           <Button>1</Button>
