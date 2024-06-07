@@ -4,7 +4,7 @@ import { useTableStore } from '../../utils/store'
 
 export default function TableContent() {
   const headRow = useTableStore((state) => state.headRow)
-  const tableRows = useTableStore((state) => state.tableRows)
+  const tableRows = useTableStore((state) => state.displayedRows)
   return (
     <Table className={`tableViewer__table`} striped bordered hover>
       <thead>
