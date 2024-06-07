@@ -10,19 +10,21 @@ export default function TableContent() {
     <Table className={`tableViewer__table`} striped bordered hover>
       <thead>
         <tr>
-          {headRow.map((column: string | number, index: number) => (
+          {headRow.map((column: string, index: number) => (
             <th key={`table-header-${index}`}>{column}</th>
           ))}
         </tr>
       </thead>
       <tbody>
-        {tableRows.map((row: Array<string | number>, rowIndex: number) => (
-          <tr key={`table-${rowIndex}`}>
-            {row.map((cell, cellIndex) => (
-              <td key={`table-${rowIndex}-${cellIndex}`}>{cell}</td>
-            ))}
-          </tr>
-        ))}
+        {tableRows
+          .filter((_, rowIndex: number) => rowIndex < displayRows)
+          .map((row: Array<string>, rowIndex: number) => (
+            <tr key={`table-${rowIndex}`}>
+              {row.map((cell, cellIndex) => (
+                <td key={`table-${rowIndex}-${cellIndex}`}>{cell}</td>
+              ))}
+            </tr>
+          ))}
       </tbody>
     </Table>
   )
