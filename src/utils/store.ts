@@ -35,7 +35,9 @@ export const useTableStore = create<TableStoreType>((set) => ({
     set((state) => ({
       currentPage: number,
       displayedRows: state.tableRows.filter(
-        (_, index) => index < state.displayCount * state.currentPage
+        (_, index) =>
+          index < state.displayCount * number &&
+          index >= state.displayCount * (number - 1)
       ),
     })),
   setPreviousPage: () =>

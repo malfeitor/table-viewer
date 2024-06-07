@@ -16,7 +16,19 @@ export default function PagesJumper() {
       <Button disabled={currentPage === 1} onClick={setPreviousPage}>
         Previous
       </Button>
-      {}
+      {maxPages > 0 &&
+        [...Array(maxPages)].map((_, index) => {
+          const page = index + 1
+          return (
+            <Button
+              disabled={currentPage === page}
+              onClick={() => setPage(page)}
+              key={`page-${page}`}
+            >
+              {page}
+            </Button>
+          )
+        })}
       <Button disabled={currentPage === maxPages} onClick={setNextPage}>
         Next
       </Button>
