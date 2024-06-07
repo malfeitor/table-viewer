@@ -4,11 +4,9 @@ import { TableViewerProps, isObjectRowType } from './utils/types'
 import { Button } from 'react-bootstrap'
 import { TableStoreType, useTableStore } from './utils/store'
 import TableContent from './components/Table'
+import Quantity from './components/Quantity'
 
 export const TableViewer = ({ rows }: TableViewerProps) => {
-  const setDisplayRows = useTableStore(
-    (state: TableStoreType) => state.setDisplayRows
-  )
   const setHeadRow = useTableStore((state: TableStoreType) => state.setHeadRow)
   const setTableRows = useTableStore(
     (state: TableStoreType) => state.setTableRows
@@ -37,16 +35,7 @@ export const TableViewer = ({ rows }: TableViewerProps) => {
   return (
     <div className="tableViewer">
       <div className="tableViewer__header d-flex justify-content-between">
-        <span className="tableViewer__header--quantity">
-          Show{' '}
-          <select onChange={(e) => setDisplayRows(parseInt(e.target.value))}>
-            <option value="10">10</option>
-            <option value="25">25</option>
-            <option value="50">50</option>
-            <option value="100">100</option>
-          </select>{' '}
-          entries
-        </span>
+        <Quantity />
         <span className="tableViewer__header--search">
           Search : <input type="text" />
         </span>
