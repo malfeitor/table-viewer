@@ -6,6 +6,7 @@ import { TableStoreType, useTableStore } from './utils/store'
 import TableContent from './components/Table'
 import Quantity from './components/Quantity'
 import ShowCounter from './components/ShowCounter'
+import PagesJump from './components/PagesJump'
 
 export const TableViewer = ({ rows }: TableViewerProps) => {
   const setHeadRow = useTableStore((state: TableStoreType) => state.setHeadRow)
@@ -44,11 +45,7 @@ export const TableViewer = ({ rows }: TableViewerProps) => {
       <TableContent />
       <div className="tableViewer__footer d-flex justify-content-between">
         <ShowCounter />
-        <div>
-          <Button>Previous</Button>
-          <Button>1</Button>
-          <Button>Next</Button>
-        </div>
+        <PagesJump />
       </div>
     </div>
   )
