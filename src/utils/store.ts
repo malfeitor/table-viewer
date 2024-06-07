@@ -19,12 +19,47 @@ export const useTableStore = create<TableStoreType>((set) => ({
   headRow: [],
   tableRows: [],
   displayedRows: [],
-  currentPage: 0,
-  setDisplayCount: (number: number) => set(() => ({ displayCount: number })),
+  currentPage: 1,
   setHeadRow: (row: string[]) => set(() => ({ headRow: row })),
   setTableRows: (rows: string[][]) => set(() => ({ tableRows: rows })),
-  setPage: (number: number) => set(() => ({ currentPage: number })),
+  setDisplayCount: (number: number) =>
+    set((state) => {
+      return {
+        displayCount: number,
+        displayedRows: state.tableRows.filter(
+          (_, index) => index < number * state.currentPage
+        ),
+      }
+    }),
+  setPage: (number: number) =>
+    set((state) => ({
+      currentPage: number,
+      displayedRows: state.tableRows.filter(
+        (_, index) => index < state.displayCount * state.currentPage
+      ),
+    })),
   setPreviousPage: () =>
-    set((state) => ({ currentPage: state.currentPage - 1 })),
-  setNextPage: () => set((state) => ({ currentPage: state.currentPage + 1 })),
+    set((state) => {
+      const newPage = state.currentPage - 1
+      return {
+        currentPage: newPage,
+        displayedRows: state.tableRows.filter(
+          (_, index) =>
+            index < state.displayCount * newPage &&
+            index >= state.displayCount * (newPage - 1)
+        ),
+      }
+    }),
+  setNextPage: () =>
+    set((state) => {
+      const newPage = state.currentPage + 1
+      return {
+        currentPage: newPage,
+        displayedRows: state.tableRows.filter(
+          (_, index) =>
+            index < state.displayCount * newPage &&
+            index >= state.displayCount * (newPage - 1)
+        ),
+      }
+    }),
 }))

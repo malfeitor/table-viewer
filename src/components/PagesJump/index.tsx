@@ -7,13 +7,14 @@ export default function PagesJumper() {
   const setPage = useTableStore((state) => state.setPage)
   const setPreviousPage = useTableStore((state) => state.setPreviousPage)
   const setNextPage = useTableStore((state) => state.setNextPage)
+  //   const maxPages =
   return (
     <div>
-      <Button disabled={currentPage === 0} onClick={setPreviousPage}>
+      <Button disabled={currentPage === 1} onClick={setPreviousPage}>
         Previous
       </Button>
       {}
-      <Button disabled={true} onClick={setNextPage}>
+      <Button disabled={false} onClick={setNextPage}>
         Next
       </Button>
     </div>
