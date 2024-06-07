@@ -1,5 +1,5 @@
-type ObjectRowType = Record<string, string | number>
-type ArrayRowType = Array<string | number>
+type ObjectRowType = Record<string, string>
+type ArrayRowType = Array<string>
 
 export type TableViewerProps = {
   rows: Array<ObjectRowType | ArrayRowType>
