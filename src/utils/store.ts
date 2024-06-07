@@ -1,11 +1,12 @@
 import { create } from 'zustand'
 
 export type TableStoreType = {
-  displayRows: number
+  displayCount: number
   currentPage: number
   headRow: string[]
   tableRows: string[][]
-  setDisplayRows: (number: number) => void
+  displayedRows: string[][]
+  setDisplayCount: (number: number) => void
   setHeadRow: (row: string[]) => void
   setTableRows: (rows: string[][]) => void
   setPage: (number: number) => void
@@ -14,11 +15,12 @@ export type TableStoreType = {
 }
 
 export const useTableStore = create<TableStoreType>((set) => ({
-  displayRows: 10,
+  displayCount: 10,
   headRow: [],
   tableRows: [],
+  displayedRows: [],
   currentPage: 0,
-  setDisplayRows: (number: number) => set(() => ({ displayRows: number })),
+  setDisplayCount: (number: number) => set(() => ({ displayCount: number })),
   setHeadRow: (row: string[]) => set(() => ({ headRow: row })),
   setTableRows: (rows: string[][]) => set(() => ({ tableRows: rows })),
   setPage: (number: number) => set(() => ({ currentPage: number })),

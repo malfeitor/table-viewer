@@ -3,7 +3,7 @@ import { TableStoreType, useTableStore } from '../../utils/store'
 
 export default function Quantity() {
   const setDisplayRows = useTableStore(
-    (state: TableStoreType) => state.setDisplayRows
+    (state: TableStoreType) => state.setDisplayCount
   )
   return (
     <span className="tableViewer__header--quantity">

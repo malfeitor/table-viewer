@@ -3,7 +3,6 @@ import { Table } from 'react-bootstrap'
 import { useTableStore } from '../../utils/store'
 
 export default function TableContent() {
-  const displayRows = useTableStore((state) => state.displayRows)
   const headRow = useTableStore((state) => state.headRow)
   const tableRows = useTableStore((state) => state.tableRows)
   return (
@@ -16,15 +15,13 @@ export default function TableContent() {
         </tr>
       </thead>
       <tbody>
-        {tableRows
-          .filter((_, rowIndex: number) => rowIndex < displayRows)
-          .map((row: Array<string>, rowIndex: number) => (
-            <tr key={`table-${rowIndex}`}>
-              {row.map((cell, cellIndex) => (
-                <td key={`table-${rowIndex}-${cellIndex}`}>{cell}</td>
-              ))}
-            </tr>
-          ))}
+        {tableRows.map((row: Array<string>, rowIndex: number) => (
+          <tr key={`table-${rowIndex}`}>
+            {row.map((cell, cellIndex) => (
+              <td key={`table-${rowIndex}-${cellIndex}`}>{cell}</td>
+            ))}
+          </tr>
+        ))}
       </tbody>
     </Table>
   )
