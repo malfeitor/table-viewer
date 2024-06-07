@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import './index.scss'
 import { TableViewerProps, isObjectRowType } from './utils/types'
-import { TableStoreType, useTableStore } from './utils/store'
+import { useTableStore } from './utils/store'
 import TableContent from './components/TableContent'
 import Quantity from './components/Quantity'
 import ShowCounter from './components/ShowCounter'
@@ -9,10 +9,9 @@ import PagesJump from './components/PagesJump'
 import TableSearch from './components/TableSearch'
 
 export const TableViewer = ({ rows }: TableViewerProps) => {
-  const setHeadRow = useTableStore((state: TableStoreType) => state.setHeadRow)
-  const setTableRows = useTableStore(
-    (state: TableStoreType) => state.setTableRows
-  )
+  const setDisplayCount = useTableStore((state) => state.setDisplayCount)
+  const setHeadRow = useTableStore((state) => state.setHeadRow)
+  const setTableRows = useTableStore((state) => state.setTableRows)
 
   useEffect(() => {
     let tempHeadRow: string[] = []
@@ -32,6 +31,7 @@ export const TableViewer = ({ rows }: TableViewerProps) => {
 
     setHeadRow(tempHeadRow)
     setTableRows(tempTableRows)
+    setDisplayCount(10)
   }, [])
 
   return (

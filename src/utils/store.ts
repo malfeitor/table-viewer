@@ -15,7 +15,7 @@ export type TableStoreType = {
 }
 
 export const useTableStore = create<TableStoreType>((set) => ({
-  displayCount: 10,
+  displayCount: 0,
   headRow: [],
   tableRows: [],
   displayedRows: [],
