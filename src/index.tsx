@@ -7,6 +7,7 @@ import TableContent from './components/Table'
 import Quantity from './components/Quantity'
 import ShowCounter from './components/ShowCounter'
 import PagesJump from './components/PagesJump'
+import TableSearch from './components/TableSearch'
 
 export const TableViewer = ({ rows }: TableViewerProps) => {
   const setHeadRow = useTableStore((state: TableStoreType) => state.setHeadRow)
@@ -38,9 +39,7 @@ export const TableViewer = ({ rows }: TableViewerProps) => {
     <div className="tableViewer">
       <div className="tableViewer__header d-flex justify-content-between">
         <Quantity />
-        <span className="tableViewer__header--search">
-          Search : <input type="text" />
-        </span>
+        <TableSearch />
       </div>
       <TableContent />
       <div className="tableViewer__footer d-flex justify-content-between">
