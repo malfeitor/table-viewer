@@ -6,8 +6,9 @@ import { TableStoreType, useTableStore } from './utils/store'
 import TableContent from './components/Table'
 
 export const TableViewer = ({ rows }: TableViewerProps) => {
-  const setDisplayRows = (number: number) =>
-    useTableStore((state: TableStoreType) => state.setDisplayRows(number))
+  const setDisplayRows = useTableStore(
+    (state: TableStoreType) => state.setDisplayRows
+  )
   const setHeadRow = useTableStore((state: TableStoreType) => state.setHeadRow)
   const setTableRows = useTableStore(
     (state: TableStoreType) => state.setTableRows
@@ -40,6 +41,9 @@ export const TableViewer = ({ rows }: TableViewerProps) => {
           Show{' '}
           <select onChange={(e) => setDisplayRows(parseInt(e.target.value))}>
             <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
           </select>{' '}
           entries
         </span>
