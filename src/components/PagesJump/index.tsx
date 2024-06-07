@@ -7,13 +7,30 @@ export default function PagesJumper() {
   const setPage = useTableStore((state) => state.setPage)
   const setPreviousPage = useTableStore((state) => state.setPreviousPage)
   const setNextPage = useTableStore((state) => state.setNextPage)
+  const updateDisplayRows = useTableStore((state) => state.updateDisplayRows)
 
   const maxPages = useTableStore((state) =>
-    Math.ceil(state.tableRows.length / state.displayCount)
+    Math.ceil(state.foundRows.length / state.displayCount)
   )
+
+  const handleClick = (page: number) => {
+    setPage(page)
+    updateDisplayRows()
+  }
+
+  const handlePrevious = () => {
+    setPreviousPage()
+    updateDisplayRows()
+  }
+
+  const handleNext = () => {
+    setNextPage()
+    updateDisplayRows()
+  }
+
   return (
     <div>
-      <Button disabled={currentPage === 1} onClick={setPreviousPage}>
+      <Button disabled={currentPage === 1} onClick={handlePrevious}>
         Previous
       </Button>
       {maxPages > 0 &&
@@ -22,14 +39,14 @@ export default function PagesJumper() {
           return (
             <Button
               disabled={currentPage === page}
-              onClick={() => setPage(page)}
+              onClick={() => handleClick(page)}
               key={`page-${page}`}
             >
               {page}
             </Button>
           )
         })}
-      <Button disabled={currentPage === maxPages} onClick={setNextPage}>
+      <Button disabled={currentPage === maxPages} onClick={handleNext}>
         Next
       </Button>
     </div>

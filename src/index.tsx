@@ -9,9 +9,9 @@ import PagesJump from './components/PagesJump'
 import TableSearch from './components/TableSearch'
 
 export const TableViewer = ({ rows }: TableViewerProps) => {
-  const setDisplayCount = useTableStore((state) => state.setDisplayCount)
   const setHeadRow = useTableStore((state) => state.setHeadRow)
   const setTableRows = useTableStore((state) => state.setTableRows)
+  const updateDisplayRows = useTableStore((state) => state.updateDisplayRows)
 
   useEffect(() => {
     let tempHeadRow: string[] = []
@@ -31,7 +31,7 @@ export const TableViewer = ({ rows }: TableViewerProps) => {
 
     setHeadRow(tempHeadRow)
     setTableRows(tempTableRows)
-    setDisplayCount(10)
+    updateDisplayRows()
   }, [])
 
   return (
