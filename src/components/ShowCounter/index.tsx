@@ -6,7 +6,7 @@ export default function ShowCounter() {
   const displayedEntries = useTableStore((state) => state.displayedRows.length)
   return (
     <p>
-      Showing {displayedEntries} of {maxEntries} entries
+      Showing 1 to {displayedEntries} of {maxEntries} entries
     </p>
   )
 }
