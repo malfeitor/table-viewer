@@ -6,11 +6,12 @@ export default function ShowCounter() {
   const maxEntries = useTableStore((state) => state.foundRows.length)
   const displayedEntries = useTableStore((state) => state.displayedRows.length)
   const displayCount = useTableStore((state) => state.displayCount)
+  const first = 1 + displayCount * (currentPage - 1)
+  const last = displayedEntries + displayCount * (currentPage - 1)
+
   return (
-    <p>
-      Showing {1 + displayCount * (currentPage - 1)} to{' '}
-      {displayedEntries + displayCount * (currentPage - 1)} of {maxEntries}{' '}
-      entries
-    </p>
+    <div className="tableViewer__showCounter">
+      Showing {first} to {last} of {maxEntries} entries
+    </div>
   )
 }
