@@ -29,7 +29,7 @@ export default function PagesJumper() {
   }
 
   return (
-    <div>
+    <div className="tableViewer__pagesJump">
       <Button disabled={currentPage === 1} onClick={handlePrevious}>
         Previous
       </Button>
