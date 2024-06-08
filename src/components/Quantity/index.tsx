@@ -11,7 +11,7 @@ export default function Quantity() {
     updateDisplayRows()
   }
   return (
-    <span className="tableViewer__header--quantity">
+    <span className="tableViewer__quantity">
       Show{' '}
       <select onChange={(e) => handleSelect(parseInt(e.target.value))}>
         <option value="10">10</option>
