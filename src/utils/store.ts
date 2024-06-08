@@ -45,7 +45,7 @@ export const useTableStore = create<TableStoreType>((set) => ({
       const newFound = []
       for (let i = 0; i < state.tableRows.length; i++) {
         const row = state.tableRows[i]
-        if (row.some((cell) => cell.includes(str))) {
+        if (row.some((cell) => cell.toString().includes(str))) {
           newFound.push(i)
         }
       }
