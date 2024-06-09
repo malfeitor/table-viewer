@@ -17,9 +17,12 @@ export default function TableHead() {
     !isSortReversed && index === sortColumnIndex ? '000' : 'AAA'
 
   const onClick = (index: number) => {
-    index === sortColumnIndex
-      ? setSortReversed(!isSortReversed)
-      : setSortColumnIndex(index)
+    if (index === sortColumnIndex) {
+      setSortReversed(!isSortReversed)
+    } else {
+      setSortReversed(false)
+      setSortColumnIndex(index)
+    }
     filterRows()
     updateDisplayRows()
   }
