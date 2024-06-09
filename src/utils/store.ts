@@ -10,7 +10,7 @@ export type TableStoreType = {
   displayedRows: number[]
   sortFunctions: SortFunctionType[]
   sortColumnIndex: number
-  sortReversed: boolean
+  isSortReversed: boolean
   sortedRows: number[]
   searchValue: string
   setDisplayCount: (number: number) => void
@@ -36,7 +36,7 @@ export const useTableStore = create<TableStoreType>((set) => ({
   currentPage: 1,
   sortFunctions: [],
   sortColumnIndex: 0,
-  sortReversed: false,
+  isSortReversed: false,
   sortedRows: [],
   searchValue: '',
 
@@ -78,13 +78,13 @@ export const useTableStore = create<TableStoreType>((set) => ({
   setSortColumnIndex: (index) =>
     set((state) => ({
       sortColumnIndex: index,
-      tableRows: state.sortReversed
+      tableRows: state.isSortReversed
         ? state.tableRows.sort(state.sortFunctions[index]).reverse()
         : state.tableRows.sort(state.sortFunctions[index]),
     })),
   setSortReversed: (value) =>
     set((state) => ({
-      sortReversed: value,
+      isSortReversed: value,
       tableRows: value
         ? state.tableRows
             .sort(state.sortFunctions[state.sortColumnIndex])
