@@ -1,0 +1,18 @@
+.tableViewer {
+  width: min-content;
+  &__table {
+    width: max-content;
+    margin: 0;
+  }
+  &__showCounter {
+    width: max-content;
+    flex-shrink: 0;
+  }
+  &__pagesJump {
+    button {
+      margin: 5px;
+      padding: 4px;
+      min-width: 25px;
+    }
+  }
+}

@@ -36,12 +36,12 @@ export const TableViewer = ({ rows }: TableViewerProps) => {
 
   return (
     <div className="tableViewer">
-      <div className="tableViewer__header d-flex justify-content-between">
+      <div className="tableViewer__header d-flex justify-content-between align-items-center mb-2">
         <Quantity />
         <TableSearch />
       </div>
       <TableContent />
-      <div className="tableViewer__footer d-flex justify-content-between">
+      <div className="tableViewer__footer d-flex justify-content-between align-items-center">
         <ShowCounter />
         <PagesJump />
       </div>
