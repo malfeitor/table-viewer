@@ -8,7 +8,7 @@ import ShowCounter from './components/ShowCounter'
 import PagesJump from './components/PagesJump'
 import TableSearch from './components/TableSearch'
 
-export const TableViewer = ({ rows }: TableViewerProps) => {
+export const TableViewer = ({ rows, ...restProps }: TableViewerProps) => {
   const setHeadRow = useTableStore((state) => state.setHeadRow)
   const setTableRows = useTableStore((state) => state.setTableRows)
   const updateDisplayRows = useTableStore((state) => state.updateDisplayRows)
@@ -40,7 +40,7 @@ export const TableViewer = ({ rows }: TableViewerProps) => {
         <Quantity />
         <TableSearch />
       </div>
-      <TableContent />
+      <TableContent {...restProps} />
       <div className="tableViewer__footer d-flex justify-content-between align-items-center">
         <ShowCounter />
         <PagesJump />
