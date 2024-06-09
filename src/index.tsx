@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import './index.scss'
 import { TableViewerProps, isObjectRowType } from './utils/types'
 import { useTableStore } from './utils/store'
-import TableContent from './components/TableContent'
+import TableContent from './layouts/TableContent'
 import Quantity from './components/Quantity'
 import ShowCounter from './components/ShowCounter'
 import PagesJump from './components/PagesJump'
@@ -40,7 +40,7 @@ export const TableViewer = ({ rows, ...restProps }: TableViewerProps) => {
         <Quantity />
         <TableSearch />
       </div>
-      <TableContent {...restProps} />
+      <TableContent />
       <div className="tableViewer__footer d-flex justify-content-between align-items-center">
         <ShowCounter />
         <PagesJump />
