@@ -19,3 +19,9 @@ export function isObjectSortFunctions(
 ): prop is Record<string, SortFunctionType> {
   return typeof prop === 'object' && prop.length === undefined
 }
+
+export function isArraySortFunctions(
+  prop: Array<SortFunctionType> | Record<string, SortFunctionType> | undefined
+): prop is Array<SortFunctionType> {
+  return typeof prop === 'object' && prop.length !== undefined
+}

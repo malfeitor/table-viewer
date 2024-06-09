@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import './index.scss'
 import {
   TableViewerProps,
+  isArraySortFunctions,
   isObjectRowType,
   isObjectSortFunctions,
 } from './utils/types'
@@ -22,6 +23,7 @@ export const TableViewer = ({ rows, ...restProps }: TableViewerProps) => {
     let tempHeadRow: string[] = []
     let tempTableRows = []
     let tempSortFunctions = []
+    const propSort = restProps?.sortFunctions
 
     if (isObjectRowType(rows)) {
       // get all uniques column identifiers
@@ -29,7 +31,6 @@ export const TableViewer = ({ rows, ...restProps }: TableViewerProps) => {
       tempTableRows = rows.map((row) =>
         tempHeadRow.map((column) => row[column])
       )
-      const propSort = restProps?.sortFunctions
       if (isObjectSortFunctions(propSort)) {
         tempSortFunctions = tempHeadRow.map((column) =>
           typeof propSort[column] === 'function' ? propSort[column] : sortString
@@ -39,6 +40,11 @@ export const TableViewer = ({ rows, ...restProps }: TableViewerProps) => {
       // create a copy
       tempTableRows = JSON.parse(JSON.stringify(rows))
       tempHeadRow = tempTableRows.shift()
+      if (isArraySortFunctions(propSort)) {
+        tempSortFunctions = tempHeadRow.map((_, index) =>
+          typeof propSort[index] === 'function' ? propSort[index] : sortString
+        )
+      }
     }
 
     setHeadRow(tempHeadRow)
