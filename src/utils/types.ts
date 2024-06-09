@@ -5,6 +5,7 @@ export type SortFunctionType = (a: any, b: any) => number
 export type TableViewerProps = {
   rows: Array<ObjectRowType | ArrayRowType>
   sortFunctions?: Record<string, SortFunctionType> | Array<SortFunctionType>
+  heads?: string[]
   className?: string
 }
 
