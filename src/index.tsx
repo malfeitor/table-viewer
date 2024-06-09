@@ -33,30 +33,28 @@ export const TableViewer = ({ rows, ...restProps }: TableViewerProps) => {
       tempTableRows = rows.map((row) =>
         tempHeadRow.map((column) => row[column])
       )
-      if (isObjectSortFunctions(propSort)) {
-        tempSortFunctions = tempHeadRow.map((column, index) =>
-          sortDecorator(
-            typeof propSort[column] === 'function'
-              ? propSort[column]
-              : sortString,
-            index
-          )
-        )
-      }
     } else {
       // create a copy
       tempTableRows = JSON.parse(JSON.stringify(rows))
       tempHeadRow = tempTableRows.shift()
-      if (isArraySortFunctions(propSort)) {
-        tempSortFunctions = tempHeadRow.map((_, index) =>
-          sortDecorator(
-            typeof propSort[index] === 'function'
-              ? propSort[index]
-              : sortString,
-            index
-          )
+    }
+
+    if (isArraySortFunctions(propSort)) {
+      tempSortFunctions = tempHeadRow.map((_, index) =>
+        sortDecorator(
+          typeof propSort[index] === 'function' ? propSort[index] : sortString,
+          index
         )
-      }
+      )
+    } else if (isObjectSortFunctions(propSort)) {
+      tempSortFunctions = tempHeadRow.map((column, index) =>
+        sortDecorator(
+          typeof propSort[column] === 'function'
+            ? propSort[column]
+            : sortString,
+          index
+        )
+      )
     }
 
     setHeadRow(tempHeadRow)
