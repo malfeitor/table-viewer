@@ -12,9 +12,9 @@ export default function TableHead() {
   const sortColumnIndex = useTableStore((state) => state.sortColumnIndex)
 
   const arrowUpActiveColor = (index: number) =>
-    isSortReversed && index === sortColumnIndex ? '000' : 'AAA'
+    isSortReversed && index === sortColumnIndex ? '#000' : '#AAA'
   const arrowDownActiveColor = (index: number) =>
-    !isSortReversed && index === sortColumnIndex ? '000' : 'AAA'
+    !isSortReversed && index === sortColumnIndex ? '#000' : '#AAA'
 
   const onClick = (index: number) => {
     if (index === sortColumnIndex) {
