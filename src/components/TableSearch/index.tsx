@@ -2,10 +2,13 @@ import React, { ChangeEvent } from 'react'
 import { useTableStore } from '../../utils/store'
 
 export default function TableSearch() {
-  const search = useTableStore((state) => state.search)
+  const setSearchValue = useTableStore((state) => state.setSearchValue)
+  const filterRows = useTableStore((state) => state.filterRows)
   const updateDisplayRows = useTableStore((state) => state.updateDisplayRows)
+
   const onChange = (e: ChangeEvent) => {
-    search((e.target as HTMLInputElement).value)
+    setSearchValue((e.target as HTMLInputElement).value)
+    filterRows()
     updateDisplayRows()
   }
 

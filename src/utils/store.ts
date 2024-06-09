@@ -12,17 +12,19 @@ export type TableStoreType = {
   sortColumnIndex: number
   sortReversed: boolean
   sortedRows: number[]
+  searchValue: string
   setDisplayCount: (number: number) => void
   setHeadRow: (row: string[]) => void
   setTableRows: (rows: string[][]) => void
   setPage: (number: number) => void
   setPreviousPage: () => void
   setNextPage: () => void
-  search: (str: string) => void
+  setSearchValue: (str: string) => void
   updateDisplayRows: () => void
   setSortFunctions: (sortFunct: SortFunctionType[]) => void
   setSortColumnIndex: (index: number) => void
   setSortReversed: (value: boolean) => void
+  filterRows: () => void
 }
 
 export const useTableStore = create<TableStoreType>((set) => ({
@@ -36,9 +38,9 @@ export const useTableStore = create<TableStoreType>((set) => ({
   sortColumnIndex: 0,
   sortReversed: false,
   sortedRows: [],
+  searchValue: '',
 
   setHeadRow: (row) => set(() => ({ headRow: row })),
-
   setTableRows: (rows) =>
     set(() => ({ tableRows: rows, foundRows: rows.map((_, index) => index) })),
 
@@ -46,18 +48,17 @@ export const useTableStore = create<TableStoreType>((set) => ({
     set(() => ({ displayCount: number, currentPage: 1 })),
 
   setPage: (number) => set(() => ({ currentPage: number })),
-
   setPreviousPage: () =>
     set((state) => ({ currentPage: state.currentPage - 1 })),
-
   setNextPage: () => set((state) => ({ currentPage: state.currentPage + 1 })),
 
-  search: (str) =>
+  setSearchValue: (str) => set(() => ({ searchValue: str })),
+  filterRows: () =>
     set((state) => {
       const newFound = []
       for (let i = 0; i < state.tableRows.length; i++) {
         const row = state.tableRows[i]
-        if (row.some((cell) => cell.toString().includes(str))) {
+        if (row.some((cell) => cell.toString().includes(state.searchValue))) {
           newFound.push(i)
         }
       }
