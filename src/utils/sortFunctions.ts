@@ -1,3 +1,5 @@
 export function sortString(a: string, b: string) {
-  return a.toLowerCase() < b.toLowerCase()
+  if (a.toLowerCase() < b.toLowerCase()) return -1
+  if (a.toLowerCase() > b.toLowerCase()) return 1
+  return 0
 }
