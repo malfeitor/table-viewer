@@ -2,13 +2,14 @@ import React from 'react'
 import { useTableStore } from '../../utils/store'
 
 export default function TableBody() {
-  const tableRows = useTableStore((state) => state.displayedRows)
+  const displayedRowsIndex = useTableStore((state) => state.displayedRows)
+  const tableRowData = useTableStore((state) => state.tableRows)
   return (
     <tbody>
-      {tableRows.map((row: Array<string>, rowIndex: number) => (
-        <tr key={`table-${rowIndex}`}>
-          {row.map((cell, cellIndex) => (
-            <td key={`table-${rowIndex}-${cellIndex}`}>{cell}</td>
+      {displayedRowsIndex.map((row) => (
+        <tr key={`table-${row}`}>
+          {tableRowData[row].map((cell, cellIndex) => (
+            <td key={`table-${row}-${cellIndex}`}>{cell}</td>
           ))}
         </tr>
       ))}

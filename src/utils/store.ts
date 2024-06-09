@@ -7,10 +7,11 @@ export type TableStoreType = {
   headRow: string[]
   tableRows: string[][]
   foundRows: number[]
-  displayedRows: string[][]
+  displayedRows: number[]
   sortFunctions: SortFunctionType[]
   sortColumnIndex: number
   sortReversed: boolean
+  sortedRows: number[]
   setDisplayCount: (number: number) => void
   setHeadRow: (row: string[]) => void
   setTableRows: (rows: string[][]) => void
@@ -34,6 +35,7 @@ export const useTableStore = create<TableStoreType>((set) => ({
   sortFunctions: [],
   sortColumnIndex: 0,
   sortReversed: false,
+  sortedRows: [],
 
   setHeadRow: (row) => set(() => ({ headRow: row })),
 
@@ -64,13 +66,11 @@ export const useTableStore = create<TableStoreType>((set) => ({
 
   updateDisplayRows: () =>
     set((state) => ({
-      displayedRows: state.foundRows
-        .filter(
-          (_, index) =>
-            index < state.displayCount * state.currentPage &&
-            index >= state.displayCount * (state.currentPage - 1)
-        )
-        .map((index) => state.tableRows[index]),
+      displayedRows: state.foundRows.filter(
+        (_, index) =>
+          index < state.displayCount * state.currentPage &&
+          index >= state.displayCount * (state.currentPage - 1)
+      ),
     })),
 
   setSortFunctions: (sortFunct) => set(() => ({ sortFunctions: sortFunct })),
