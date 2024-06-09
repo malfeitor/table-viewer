@@ -23,6 +23,6 @@ It is written in TypeScript with Bootstrap and Zustand.
 
 - (required) `rows` : the table's rows you want to display, it can be an Object or an Array, if it's an array and no heads are specified, it will use the first line as table head.
 - (optional) `heads` : the table's head row you want to display. It must be an Array.
-- (optional) `sortFunctions` : the comparisons functions to sort table's rows with. It can be an Array or an Object.
+- (optional) `sortFunctions` : the comparisons functions to sort table's rows with. It can be an Array or an Object. By default it's a string alphabetical comparison.
 
 ## Screenshots
