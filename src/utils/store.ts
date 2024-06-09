@@ -75,6 +75,20 @@ export const useTableStore = create<TableStoreType>((set) => ({
     })),
 
   setSortFunctions: (sortFunct) => set(() => ({ sortFunctions: sortFunct })),
-  setSortColumnIndex: (index) => set(() => ({ sortColumnIndex: index })),
-  setSortReversed: (value) => set(() => ({ sortReversed: value })),
+  setSortColumnIndex: (index) =>
+    set((state) => ({
+      sortColumnIndex: index,
+      tableRows: state.sortReversed
+        ? state.tableRows.sort(state.sortFunctions[index]).reverse()
+        : state.tableRows.sort(state.sortFunctions[index]),
+    })),
+  setSortReversed: (value) =>
+    set((state) => ({
+      sortReversed: value,
+      tableRows: value
+        ? state.tableRows
+            .sort(state.sortFunctions[state.sortColumnIndex])
+            .reverse()
+        : state.tableRows.sort(state.sortFunctions[state.sortColumnIndex]),
+    })),
 }))
