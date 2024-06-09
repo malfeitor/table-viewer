@@ -1,6 +1,6 @@
 type ObjectRowType = Record<string, string>
 type ArrayRowType = Array<string>
-type SortFunctionType = (a: any, b: any) => number
+export type SortFunctionType = (a: any, b: any) => number
 
 export type TableViewerProps = {
   rows: Array<ObjectRowType | ArrayRowType>

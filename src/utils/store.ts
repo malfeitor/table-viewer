@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { SortFunctionType } from './types'
 
 export type TableStoreType = {
   displayCount: number
@@ -7,6 +8,7 @@ export type TableStoreType = {
   tableRows: string[][]
   foundRows: number[]
   displayedRows: string[][]
+  sortFunctions: SortFunctionType[]
   setDisplayCount: (number: number) => void
   setHeadRow: (row: string[]) => void
   setTableRows: (rows: string[][]) => void
@@ -15,6 +17,7 @@ export type TableStoreType = {
   setNextPage: () => void
   search: (str: string) => void
   updateDisplayRows: () => void
+  setSortFunctions: (sortFunct: SortFunctionType[]) => void
 }
 
 export const useTableStore = create<TableStoreType>((set) => ({
@@ -24,23 +27,24 @@ export const useTableStore = create<TableStoreType>((set) => ({
   foundRows: [],
   displayedRows: [],
   currentPage: 1,
+  sortFunctions: [],
 
-  setHeadRow: (row: string[]) => set(() => ({ headRow: row })),
+  setHeadRow: (row) => set(() => ({ headRow: row })),
 
-  setTableRows: (rows: string[][]) =>
+  setTableRows: (rows) =>
     set(() => ({ tableRows: rows, foundRows: rows.map((_, index) => index) })),
 
-  setDisplayCount: (number: number) =>
+  setDisplayCount: (number) =>
     set(() => ({ displayCount: number, currentPage: 1 })),
 
-  setPage: (number: number) => set(() => ({ currentPage: number })),
+  setPage: (number) => set(() => ({ currentPage: number })),
 
   setPreviousPage: () =>
     set((state) => ({ currentPage: state.currentPage - 1 })),
 
   setNextPage: () => set((state) => ({ currentPage: state.currentPage + 1 })),
 
-  search: (str: string) =>
+  search: (str) =>
     set((state) => {
       const newFound = []
       for (let i = 0; i < state.tableRows.length; i++) {
@@ -62,4 +66,6 @@ export const useTableStore = create<TableStoreType>((set) => ({
         )
         .map((index) => state.tableRows[index]),
     })),
+
+  setSortFunctions: (sortFunct) => set(() => ({ sortFunctions: sortFunct })),
 }))
