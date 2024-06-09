@@ -26,6 +26,7 @@ export const TableViewer = ({ rows, ...restProps }: TableViewerProps) => {
     let tempTableRows = []
     let tempSortFunctions: SortFunctionType[] = []
     const propSort = restProps?.sortFunctions
+    const heads = restProps?.heads
 
     if (isObjectRowType(rows)) {
       // get all uniques column identifiers
@@ -36,7 +37,11 @@ export const TableViewer = ({ rows, ...restProps }: TableViewerProps) => {
     } else {
       // create a copy
       tempTableRows = JSON.parse(JSON.stringify(rows))
-      tempHeadRow = tempTableRows.shift()
+      if (typeof heads === 'object') {
+        tempHeadRow = [...heads]
+      } else {
+        tempHeadRow = tempTableRows.shift()
+      }
     }
 
     if (isArraySortFunctions(propSort)) {
