@@ -13,7 +13,7 @@ import Quantity from './components/Quantity'
 import ShowCounter from './components/ShowCounter'
 import PagesJump from './components/PagesJump'
 import TableSearch from './components/TableSearch'
-import { sortString } from './utils/sortFunctions'
+import { sortString, sortDecorator } from './utils/sortFunctions'
 
 export const TableViewer = ({ rows, ...restProps }: TableViewerProps) => {
   const setHeadRow = useTableStore((state) => state.setHeadRow)
@@ -34,8 +34,13 @@ export const TableViewer = ({ rows, ...restProps }: TableViewerProps) => {
         tempHeadRow.map((column) => row[column])
       )
       if (isObjectSortFunctions(propSort)) {
-        tempSortFunctions = tempHeadRow.map((column) =>
-          typeof propSort[column] === 'function' ? propSort[column] : sortString
+        tempSortFunctions = tempHeadRow.map((column, index) =>
+          sortDecorator(
+            typeof propSort[column] === 'function'
+              ? propSort[column]
+              : sortString,
+            index
+          )
         )
       }
     } else {
@@ -44,7 +49,12 @@ export const TableViewer = ({ rows, ...restProps }: TableViewerProps) => {
       tempHeadRow = tempTableRows.shift()
       if (isArraySortFunctions(propSort)) {
         tempSortFunctions = tempHeadRow.map((_, index) =>
-          typeof propSort[index] === 'function' ? propSort[index] : sortString
+          sortDecorator(
+            typeof propSort[index] === 'function'
+              ? propSort[index]
+              : sortString,
+            index
+          )
         )
       }
     }
