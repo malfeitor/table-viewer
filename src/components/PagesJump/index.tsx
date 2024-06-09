@@ -89,12 +89,12 @@ export default function PagesJumper() {
   }
 
   return (
-    <div className="tableViewer__pagesJump">
-      <Button disabled={currentPage === 1} onClick={handlePrevious}>
-        Previous
-      </Button>
-      {maxPages > 0 && (
+    <div className="tableViewer__pagesJump d-flex flex-wrap">
+      {maxPages > 1 && (
         <>
+          <Button disabled={currentPage === 1} onClick={handlePrevious}>
+            Previous
+          </Button>
           <Button
             disabled={currentPage === 1}
             onClick={() => handleClick(1)}
@@ -102,7 +102,6 @@ export default function PagesJumper() {
           >
             {1}
           </Button>
-          {/* {cu} */}
           {showButtons()}
           <Button
             disabled={currentPage === maxPages}
@@ -111,11 +110,11 @@ export default function PagesJumper() {
           >
             {maxPages}
           </Button>
+          <Button disabled={currentPage === maxPages} onClick={handleNext}>
+            Next
+          </Button>
         </>
       )}
-      <Button disabled={currentPage === maxPages} onClick={handleNext}>
-        Next
-      </Button>
     </div>
   )
 }
