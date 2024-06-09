@@ -23,7 +23,7 @@ export default function PagesJumper() {
     if (currentPage < BUTTON_QUANTITY) {
       return BUTTON_SIBLINGS
     }
-    if (currentPage + BUTTON_QUANTITY > maxPages) {
+    if (currentPage + BUTTON_SIBLINGS >= maxPages) {
       return maxPages - BUTTON_QUANTITY + 1
     }
     return currentPage - BUTTON_SIBLINGS
