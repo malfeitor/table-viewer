@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
 import { useTableStore } from '../../utils/store'
+import './index.scss'
 
 export default function PagesJumper() {
   const currentPage = useTableStore((state) => state.currentPage)
@@ -16,7 +17,7 @@ export default function PagesJumper() {
   // if we have too much buttons to show, we display a group surrounding current page
   const BUTTON_QUANTITY = 5
   const BUTTON_SIBLINGS = 2
-  const BUTTON_ELLIPSIS_CLASS = ''
+  const BUTTON_ELLIPSIS_CLASS = 'buttonEllipsis'
 
   const minButtonPage = () => {
     if (currentPage < BUTTON_QUANTITY) {
@@ -61,9 +62,9 @@ export default function PagesJumper() {
     let buttons = []
     if (currentPage >= BUTTON_QUANTITY) {
       buttons.push(
-        <Button className={BUTTON_ELLIPSIS_CLASS} key="buttonEllipsis-0">
+        <span className={BUTTON_ELLIPSIS_CLASS} key="buttonEllipsis-0">
           ...
-        </Button>
+        </span>
       )
     }
     for (let i = minButtonPage(); i <= maxButtonPage(); i++) {
@@ -79,9 +80,9 @@ export default function PagesJumper() {
     }
     if (maxButtonPage() <= maxPages - BUTTON_SIBLINGS) {
       buttons.push(
-        <Button className={BUTTON_ELLIPSIS_CLASS} key="buttonEllipsis-1">
+        <span className={BUTTON_ELLIPSIS_CLASS} key="buttonEllipsis-1">
           ...
-        </Button>
+        </span>
       )
     }
     return buttons
