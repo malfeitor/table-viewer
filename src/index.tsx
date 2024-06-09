@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import './index.scss'
 import {
+  SortFunctionType,
   TableViewerProps,
   isArraySortFunctions,
   isObjectRowType,
@@ -17,12 +18,13 @@ import { sortString } from './utils/sortFunctions'
 export const TableViewer = ({ rows, ...restProps }: TableViewerProps) => {
   const setHeadRow = useTableStore((state) => state.setHeadRow)
   const setTableRows = useTableStore((state) => state.setTableRows)
+  const setSortFunctions = useTableStore((state) => state.setSortFunctions)
   const updateDisplayRows = useTableStore((state) => state.updateDisplayRows)
 
   useEffect(() => {
     let tempHeadRow: string[] = []
     let tempTableRows = []
-    let tempSortFunctions = []
+    let tempSortFunctions: SortFunctionType[] = []
     const propSort = restProps?.sortFunctions
 
     if (isObjectRowType(rows)) {
@@ -49,6 +51,7 @@ export const TableViewer = ({ rows, ...restProps }: TableViewerProps) => {
 
     setHeadRow(tempHeadRow)
     setTableRows(tempTableRows)
+    setSortFunctions(tempSortFunctions)
     updateDisplayRows()
   }, [])
 
