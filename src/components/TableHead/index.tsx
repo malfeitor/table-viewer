@@ -27,11 +27,25 @@ export default function TableHead() {
     updateDisplayRows()
   }
 
+  const onKeyDown = (
+    e: React.KeyboardEvent<HTMLTableCellElement>,
+    index: number
+  ) => {
+    if (e.code === 'Enter' || e.code === 'Space') {
+      onClick(index)
+    }
+  }
+
   return (
     <thead>
       <tr>
         {headRow.map((column: string, index: number) => (
-          <th key={`table-header-${index}`} onClick={() => onClick(index)}>
+          <th
+            key={`table-header-${index}`}
+            onClick={() => onClick(index)}
+            onKeyDown={(e) => onKeyDown(e, index)}
+            tabIndex={0}
+          >
             {column}{' '}
             <FaSortUp
               style={{ position: 'absolute', color: arrowUpActiveColor(index) }}
