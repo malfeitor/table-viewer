@@ -1,5 +1,6 @@
 import React, { ChangeEvent } from 'react'
 import { useTableStore } from '../../utils/store'
+import { Form, FormGroup } from 'react-bootstrap'
 
 export default function TableSearch() {
   const setSearchValue = useTableStore((state) => state.setSearchValue)
@@ -13,8 +14,8 @@ export default function TableSearch() {
   }
 
   return (
-    <span className="tableViewer__search">
-      Search : <input type="text" onChange={onChange} />
-    </span>
+    <FormGroup className="tableViewer__search">
+      <Form.Control type="text" onChange={onChange} placeholder="Filter :" />
+    </FormGroup>
   )
 }

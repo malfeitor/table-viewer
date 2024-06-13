@@ -1,5 +1,6 @@
 import React from 'react'
 import { TableStoreType, useTableStore } from '../../utils/store'
+import { Form } from 'react-bootstrap'
 
 export default function Quantity() {
   const setDisplayRows = useTableStore(
@@ -11,15 +12,20 @@ export default function Quantity() {
     updateDisplayRows()
   }
   return (
-    <span className="tableViewer__quantity">
-      Show{' '}
-      <select onChange={(e) => handleSelect(parseInt(e.target.value))}>
+    <Form.Group className="tableViewer__quantity d-flex align-items-center">
+      <span>Show</span>
+      <Form.Select
+        onChange={(e) => handleSelect(parseInt(e.target.value))}
+        size="sm"
+        className="mx-1"
+        aria-label="Select how many entries are displayed"
+      >
         <option value="10">10</option>
         <option value="25">25</option>
         <option value="50">50</option>
         <option value="100">100</option>
-      </select>{' '}
-      entries
-    </span>
+      </Form.Select>
+      <span>entries</span>
+    </Form.Group>
   )
 }
