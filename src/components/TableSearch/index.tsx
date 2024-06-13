@@ -15,7 +15,12 @@ export default function TableSearch() {
 
   return (
     <FormGroup className="tableViewer__search">
-      <Form.Control type="text" onChange={onChange} placeholder="Filter :" />
+      <Form.Control
+        type="text"
+        onChange={onChange}
+        placeholder="Filter :"
+        aria-label="Filter displayed rows"
+      />
     </FormGroup>
   )
 }
